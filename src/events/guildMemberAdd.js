@@ -6,7 +6,7 @@ client.on("guildMemberAdd", async (member) => {
   console.log(member.username);
 
   const welcome_embed = new EmbedBuilder()
-    .setDescription(`Bem vindo ao servidor ${member.user}!`)
+    .setDescription(`Bem vindo ao servidor ${member.user}! :partying_face:`)
     .setColor("#23272A");
   const channel = member.guild.channels.cache.get(channel_mensage_welcome);
 
