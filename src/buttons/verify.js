@@ -1,5 +1,5 @@
 const path = require('path');
-const { verifyRole } = path.join(__dirname, '../config.json');
+const { verifyRole } = require('../config.json');
 
 module.exports = {
 	id: 'verify_button',

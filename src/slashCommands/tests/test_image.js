@@ -37,7 +37,7 @@ module.exports = {
     const mask = await Jimp.read(maskPath);
     const fundo = await Jimp.read(backgroundPath);
     const composite = await Jimp.read(backgroundCompositePath);
-
+    const savePath = path.join(__dirname, "..", "assets", "images", "avatar.png");
     avatar
       .then((avatar) => {
         avatar.resize(580, 580);
@@ -45,7 +45,7 @@ module.exports = {
         avatar.mask(mask);
         fundo.composite(avatar, 910, 95);
         fundo.print(fonte, 1100, 850, "RAIDOXX");
-        fundo.composite(composite, 0, 0).write("avatar.png");
+        fundo.composite(composite, 0, 0).write(savePath);
       })
       .catch((err) => {
         console.log(err);
@@ -54,7 +54,7 @@ module.exports = {
       
       interaction.reply({
         content: "Bem vindo ao teste de imagem!",
-        files: ["avatar.png"],
+        files: [savePath],
       });
   },
 };
