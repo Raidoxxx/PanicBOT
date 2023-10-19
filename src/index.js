@@ -1,4 +1,9 @@
-const { Client, GatewayIntentBits, Partials, Collection, Events } = require('discord.js');
+require('dotenv').config() 
+const { Client, GatewayIntentBits, Partials, Collection } = require('discord.js');
+const fs = require('fs');
+const path = require('path');
+const config = require('./config.json')
+
 const client = new Client({
 	intents: [
 		GatewayIntentBits.Guilds, 
@@ -12,12 +17,6 @@ const client = new Client({
 	partials: [Partials.Channel, Partials.Message, Partials.User, Partials.GuildMember, Partials.Reaction] 
 });
 
-require('dotenv').config() 
-const fs = require('fs');
-const path = require('path');
-const config = path.join(__dirname, '../config.json');
-const handlers = path.join(__dirname, 'handlers');
-
 client.commands = new Collection()
 client.aliases = new Collection()
 client.slashCommands = new Collection();
@@ -26,6 +25,7 @@ client.prefix = config.prefix;
 
 module.exports = client;
 
+const handlers = path.join(__dirname, 'handlers');
 fs.readdirSync(handlers).forEach((handler) => {
   require(`${handlers}/${handler}`)(client)
 });
