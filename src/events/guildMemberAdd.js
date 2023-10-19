@@ -82,20 +82,3 @@ client.on("guildMemberAdd", async (member) => {
   //     console.log(err);
   //   });
 });
-
-client.on("guildMemberRemove", async (interaction) => {
-  const bye_embed = new EmbedBuilder()
-    .setDescription(`Até mais ${interaction.user}!`)
-    .setColor("#23272A");
-
-  const channel = interaction.guild.channels.cache.get(channelID);
-
-  if (channel) {
-    channel.send({
-      embeds: [bye_embed],
-    });
-  } else {
-    console.log("Canal não encontrado.");
-  }
-
-});
