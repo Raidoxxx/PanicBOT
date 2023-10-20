@@ -8,7 +8,7 @@ module.exports = (client) => {
     fs.readdirSync(buttons).filter((file) => file.endsWith('.js')).forEach((file) => {
         const button = require(`${buttons}/${file}`)
         client.buttons.set(button.id, button)
-		table.addRow(button.id, '✅')
+		    table.addRow(button.id, '✅')
     })
 		console.log(table.toString())
 };

@@ -2,7 +2,8 @@ require('dotenv').config()
 const { Client, GatewayIntentBits, Partials, Collection } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
-const config = require('./config.json')
+const config = require('./config.json');
+const { get } = require('http');
 
 const client = new Client({
 	intents: [
@@ -21,6 +22,7 @@ client.commands = new Collection()
 client.aliases = new Collection()
 client.slashCommands = new Collection();
 client.buttons = new Collection();
+client.forms = new Collection();
 client.prefix = config.prefix;
 
 module.exports = client;
