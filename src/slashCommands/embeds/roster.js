@@ -56,6 +56,12 @@ module.exports = {
                     required: true
                 },
                 {
+                    name: 'emoji',
+                    description: 'Emoji',
+                    type: ApplicationCommandOptionType.String,
+                    required: true
+                },
+                {
                     name: 'image',
                     description: 'Image Attachment',
                     type: ApplicationCommandOptionType.Attachment,
@@ -73,11 +79,11 @@ module.exports = {
         const player4 = interaction.options.get('player4').value;
         const player5 = interaction.options.get('player5').value;
         const player6 = interaction.options.get('player6').value;
+        const emoji = interaction.options.get('emoji').value;
         const channel = interaction.options.get('channel').channel;
 
         const image = interaction.options.get('image').attachment.url;
 
-        let emoji = "<:panicp:892616487487367680>"
         const embed = new EmbedBuilder()
                 .setTitle(`- Panic Standoff 2 Roster South América [${emoji}] -`)
                 .setDescription(`> **${emoji} |- ${player1}** \n > **${emoji} |- ${player2}** \n > **${emoji} |- ${player3}** \n > **${emoji} |- ${player4}** \n > **${emoji} |- ${player5}** \n > **${emoji} |- ${player6}**`)
