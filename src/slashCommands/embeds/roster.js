@@ -85,7 +85,7 @@ module.exports = {
         const image = interaction.options.get('image').attachment.url;
 
         const embed = new EmbedBuilder()
-                .setTitle(`- Panic Standoff 2 Roster South América [${emoji}] -`)
+                .setTitle(`- Panic Standoff 2 Roster -`)
                 .setDescription(`> **${emoji} |- ${player1}** \n > **${emoji} |- ${player2}** \n > **${emoji} |- ${player3}** \n > **${emoji} |- ${player4}** \n > **${emoji} |- ${player5}** \n > **${emoji} |- ${player6}**`)
                 .setColor('#23272A')
                 .setImage(image)
