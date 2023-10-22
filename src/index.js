@@ -4,6 +4,9 @@ const fs = require('fs');
 const path = require('path');
 const config = require('./config.json');
 const { get } = require('http');
+const Database = require('./config/Database.js');
+const db = new Database();
+db.run();
 
 const client = new Client({
 	intents: [

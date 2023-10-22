@@ -1,24 +1,25 @@
-const moongose = require('mongoose');
-require('dotenv').config();
-const MongoURL = process.env.MONGO_URL;
+const { MongoClient } = require("mongodb");
+
+// Replace the uri string with your connection string.
+
+console.log(process.env.MONGO_URL);
 
 class Database {
   constructor() {
-   this.connection = null;
+    this.connection = null;
   }
 
-    async connect() {
-        console.log('Connecting to database...');
-        moongose.connect(MongoURL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        }).then(() => {
-            console.log('Connected to database!');
-            this.connection = moongose.connection;
-        }).catch((err) => {
-            console.log(err);
-        });
+  async run() {
+    try {
+      const clientDb = new MongoClient(process.env.MONGO_URL);
+      console.log("connecting");
+      await clientDb.connect();
+      this.connection = clientDb;
+      console.log("connected");
+    } catch (e) {
+      console.error(e);
     }
+  }
 }
 
 module.exports = Database;
