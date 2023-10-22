@@ -80,7 +80,7 @@ module.exports = {
         let emoji = "<:panicp:892616487487367680>"
         const embed = new EmbedBuilder()
                 .setTitle(`- Panic Standoff 2 Roster South América [${emoji}] -`)
-                .setDescription(`> **${emoji} | - ${player1}** \n > **${emoji} | - ${player2}** \n > **${emoji} |- ${player3}** \n > **${emoji} |- ${player4}** \n > **${emoji} |- ${player5}** \n > **${emoji} |- ${player6}**`)
+                .setDescription(`> **${emoji} |- ${player1}** \n > **${emoji} |- ${player2}** \n > **${emoji} |- ${player3}** \n > **${emoji} |- ${player4}** \n > **${emoji} |- ${player5}** \n > **${emoji} |- ${player6}**`)
                 .setColor('#23272A')
                 .setImage(image)
                 .setFooter({ text: interaction.guild.name, iconURL: interaction.guild.iconURL() });
