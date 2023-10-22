@@ -77,7 +77,7 @@ module.exports = {
 
         const image = interaction.options.get('image').attachment.url;
 
-        let emoji = "<:panic:892616487487367680>"
+        let emoji = "<:panicp:892616487487367680>"
         const embed = new EmbedBuilder()
                 .setTitle(`- Panic Standoff 2 Roster South América [${emoji}] -`)
                 .setDescription(`> **${emoji} | - ${player1}** \n > **${emoji} | - ${player2}** \n > **${emoji} |- ${player3}** \n > **${emoji} |- ${player4}** \n > **${emoji} |- ${player5}** \n > **${emoji} |- ${player6}**`)
