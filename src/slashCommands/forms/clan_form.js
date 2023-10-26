@@ -5,6 +5,7 @@ const {
   TextInputBuilder,
   TextInputStyle,
   ApplicationCommandOptionType,
+  PermissionsBitField
 } = require("discord.js");
 
 const { panicRole, testingRole } = require("../../config.json");

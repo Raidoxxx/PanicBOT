@@ -7,9 +7,6 @@ module.exports = {
     description: "fazer um pedido de clã",
     channel: "form_channel",
     run: async (client, interaction) => {
-        console.log(interaction.customId)
-        console.log(interaction.customId.split('_')[2])
-
         const player = interaction.guild.members.cache.get(interaction.customId.split('_')[2]).user;
 
         const rank = interaction.fields.getTextInputValue('rank_panic_form');
