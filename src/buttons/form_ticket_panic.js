@@ -1,6 +1,6 @@
 const {ActionRowBuilder, PermissionsBitField, ButtonBuilder, ChannelType, EmbedBuilder} = require('discord.js');
 const path = require('path');
-const { suportRole } = require('../config.json');
+const { suportRole, ticket_test_category } = require('../config.json');
 
 module.exports = {
 	id: 'form_ticket_panic',
@@ -25,7 +25,7 @@ module.exports = {
 		const channel = await interaction.guild.channels.create({
 			name: `ticket-${player_form.username}`,
 			type: ChannelType.GuildText,
-			parent: "1167123737380917248",
+			parent: ticket_test_category,
 			permissionOverwrites: [
 				{
 					id: interaction.guild.roles.everyone,
