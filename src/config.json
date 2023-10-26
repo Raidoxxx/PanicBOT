@@ -1,6 +1,13 @@
 {
     "prefix": "!",
     "verifyRole": "1148716021205704764",
+    "suportRole": "1157335068113649735",
+    "testerRole": "1151552414969761792",
+    "testingRole": "1158932141732790313",
+    "panicRole": "1151189222305308742",
     "channel_mensage_welcome": "1148780968841322508",
-    "form_channel": "1164679930102169651"
+    "form_channel": "1164679930102169651",
+    "log_channel": "1166936035314376855",
+    "test_channel": "1167178307725434891",
+    "test_result_channel": "1167178516413026344"
 }

@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle } = require('discord.js');
 const {form_channel} = require('../config.json');
 
 module.exports = {
@@ -18,16 +18,23 @@ module.exports = {
         const posicao = interaction.fields.getTextInputValue('posicao_panic_form');
         const dispositivo = interaction.fields.getTextInputValue('dispositivo_panic_form');
 
-        console.log(player)
         const embed = new EmbedBuilder()
         .setTitle('Formulário | Panic')
         .setDescription(`**ID:** ${id}\n**Rank:** ${rank}\n**Idade:** ${idade}\n**Posição:** ${posicao}\n**Dispositivo:** ${dispositivo}`)
         .setAuthor({ name: player.globalName, iconURL: player.avatarURL()})
         .setThumbnail(player.avatarURL())
 
+        const buttons = new ActionRowBuilder()
+                .addComponents(
+                    new ButtonBuilder()
+                        .setCustomId(`form_ticket_panic_${player.id}`)
+                        .setEmoji('📩')
+                        .setStyle(ButtonStyle.Primary),
+                )
+
         const channel = client.channels.cache.get(form_channel);
 
-        channel.send({ embeds: [embed]}).then(() => {
+        channel.send({ embeds: [embed], components: [buttons],}).then(() => {
             interaction.reply({ content: 'Formulário enviado com sucesso!', ephemeral: true })
         })
     }

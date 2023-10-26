@@ -1,23 +1,21 @@
+const { suportRole } = require("../config.json");
 const {
-  ActionRowBuilder,
-  ApplicationCommandType,
+  PermissionsBitField,
+  EmbedBuilder,
   ModalBuilder,
   TextInputBuilder,
-  TextInputStyle,
-  ApplicationCommandOptionType,
+  ActionRowBuilder,
+  TextInputStyle
 } = require("discord.js");
-
-const { panicRole, testingRole } = require("../../config.json");
+const { testerRole } = require("../config.json");
 
 module.exports = {
-  name: "form",
-  description: "fazer um pedido de clã",
-  type: ApplicationCommandType.ChatInput,
-  cooldown: 3000,
-  run: async (client, interaction) => {
+  id: "new_test",
+  permissions: [],
+  run: async (client, interaction, playerID) => {
+    const player_form = interaction.guild.members.cache.get(playerID).user;
 
-
-    if (interaction.member.roles.cache.get(panicRole) || interaction.member.roles.cache.get(testingRole)) {
+    if (!interaction.member.roles.cache.get(testerRole)) {
       if (
         !interaction.member.permissions.has(
           PermissionsBitField.resolve([PermissionsBitField.Flags.Administrator])
@@ -31,37 +29,30 @@ module.exports = {
     }
 
     const modal = new ModalBuilder()
-      .setCustomId(`form_panic_${interaction.user.id}`)
-      .setTitle("Formulário | Panic");
+      .setCustomId(`test_${player_form.id}`)
+      .setTitle("Marcar Teste");
 
     const inputs = [
       {
-        custom_id: "rank_panic_form",
-        label: "Qual é o seu rank?",
+        custom_id: "test_hr",
+        label: "Horário",
         placeholder: "Digite aqui",
         required: true,
       },
       {
-        custom_id: "idade_panic_form",
-        label: "Qual é a sua idade?",
+        custom_id: "test_data",
+        label: "Data",
         placeholder: "Digite aqui",
         required: true,
       },
       {
-        custom_id: "id_panic_form",
-        label: "Qual é o seu ID?",
+        custom_id: "test_id",
+        label: "ID do jogador",
         placeholder: "Digite aqui",
-        required: true,
       },
       {
-        custom_id: "posicao_panic_form",
-        label: "Qual é a sua posição?",
-        placeholder: "Digite aqui",
-        required: true,
-      },
-      {
-        custom_id: "dispositivo_panic_form",
-        label: "Qual é o seu dispositivo?",
+        custom_id: "test_posicao",
+        label: "Posição",
         placeholder: "Digite aqui",
         required: true,
       },
