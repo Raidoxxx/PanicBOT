@@ -21,6 +21,10 @@ module.exports = {
 			  });
 			}
 		  }	
+
+		if(interaction.guild.channels.cache.find(channel => channel.name === `ticket-${player_form.username}`)){
+			return interaction.reply({ content: 'Você já tem um ticket aberto!', ephemeral: true });
+		}  
        
 		const channel = await interaction.guild.channels.create({
 			name: `ticket-${player_form.username}`,
@@ -41,6 +45,10 @@ module.exports = {
 				},
 			],
 		});
+
+		if(!channel){
+			return interaction.reply({ content: 'Não foi possível criar o ticket!', ephemeral: true });
+		}
 		
 
 		const row = new ActionRowBuilder()
