@@ -5,6 +5,7 @@ const path = require('path');
 const config = require('./config.json');
 const {MongoClient} = require('mongodb');
 
+//test
 async function main() {
 	const uri = "mongodb+srv://vinimongo:v45icius@cluster-mongo.b3hjpz9.mongodb.net/?retryWrites=true&w=majority";
 	const clientMongo = new MongoClient(uri);
