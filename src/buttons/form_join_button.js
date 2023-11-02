@@ -14,7 +14,7 @@ module.exports = {
   run: async (client, interaction, playerID) => {
     const player_form = interaction.guild.members.cache.get(playerID).user;
 
-    if (!interaction.member.roles.cache.get(panicRole)) {
+    if (interaction.member.roles.cache.get(panicRole)) {
       if (
         !interaction.member.permissions.has(
           PermissionsBitField.resolve([PermissionsBitField.Flags.Administrator])
