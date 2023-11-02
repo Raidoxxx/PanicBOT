@@ -3,38 +3,7 @@ const { Client, GatewayIntentBits, Partials, Collection } = require('discord.js'
 const fs = require('fs');
 const path = require('path');
 const config = require('./config.json');
-const {MongoClient} = require('mongodb');
 
-//test 1
-async function main() {
-	const uri = "mongodb+srv://vinimongo:v45icius@cluster-mongo.b3hjpz9.mongodb.net/?retryWrites=true&w=majority";
-	const clientMongo = new MongoClient(uri);
- 
-    try {
-        // Connect to the MongoDB cluster
-		console.log("Connecting to MongoDB...")
-        await clientMongo.connect();
- 
-        // Make the appropriate DB calls
-        await  listDatabases(clientMongo);
- 
-    } catch (e) {
-        console.error(e);
-    } finally {
-        await clientMongo.close();
-    }
-}
-
-
-async function listDatabases(client){
-    databasesList = await client.db().admin().listDatabases();
- 
-    console.log("Databases:");
-    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
-};
-
-
-main().catch(console.error);
 
 const client = new Client({
 	intents: [

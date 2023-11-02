@@ -50,9 +50,6 @@ module.exports = {
     const message_text = messages.filter(
       (message) => !message.includes("https://")
     );
-    const message_image = messages.filter((message) =>
-      message.includes("https://")
-    );
 
     if (!messages)
       return logs.send({
@@ -65,7 +62,6 @@ module.exports = {
 
     const embeds = [
       new EmbedBuilder()
-        .setURL("https://lostluma.dev")
         .setDescription(
           `🚫 ${
             interaction.user
@@ -75,12 +71,6 @@ module.exports = {
         )
         .setColor("Red"),
     ];
-
-    message_image.forEach((image) => {
-      embeds.push(
-        new EmbedBuilder().setURL("https://lostluma.dev").setImage(image)
-      );
-    });
 
     await logs.send({ embeds: embeds });
     channel.delete();
