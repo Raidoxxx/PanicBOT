@@ -1,33 +1,24 @@
 const {
-  ActionRowBuilder,
-  ApplicationCommandType,
+  PermissionsBitField,
   ModalBuilder,
   TextInputBuilder,
-  TextInputStyle,
-  ApplicationCommandOptionType,
-  PermissionsBitField
+  ActionRowBuilder,
 } = require("discord.js");
-
-const { panicRole, testingRole } = require("../../config.json");
+const { log_channel } = require("../config.json");
+const { panicRole } = require("../config.json");
 
 module.exports = {
-  name: "form",
-  description: "fazer um pedido de clã",
-  type: ApplicationCommandType.ChatInput,
-  cooldown: 3000,
-  run: async (client, interaction) => {
+  id: "close_ticket",
+  permissions: [],
+  run: async (client, interaction, playerID) => {
+    const player_form = interaction.guild.members.cache.get(playerID).user;
 
-    return interaction.reply({
-      content: `${interaction.user}, Esse comando está em desativado!`,
-      ephemeral: true,
-    });
-
-    if (interaction.member.roles.cache.get(panicRole) || interaction.member.roles.cache.get(testingRole)) {
+    if (!interaction.member.roles.cache.get(panicRole)) {
       if (
         !interaction.member.permissions.has(
           PermissionsBitField.resolve([PermissionsBitField.Flags.Administrator])
         )
-      ){
+      ) {
         return interaction.reply({
           content: `${interaction.user}, Você não tem permissão para usar isso!`,
           ephemeral: true,

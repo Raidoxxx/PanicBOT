@@ -26,6 +26,11 @@ client.on('interactionCreate', async interaction => {
         return require('../buttons/test_player.js').run(client, interaction, player_id, arg, emoji)
     }
 
+    if(interaction.customId.startsWith('form_join_button')){
+        const player_id = interaction.customId.split('_')[3]
+        return require('../buttons/form_join_button.js').run(client, interaction, player_id)
+    }
+
     const button = client.buttons.get(interaction.customId);
     if (!button) return;
 
