@@ -3,6 +3,7 @@ const {
   ModalBuilder,
   TextInputBuilder,
   ActionRowBuilder,
+  TextInputStyle
 } = require("discord.js");
 const { log_channel } = require("../config.json");
 const { panicRole } = require("../config.json");
