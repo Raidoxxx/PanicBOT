@@ -1,5 +1,5 @@
 const { EmbedBuilder, ApplicationCommandType, ApplicationCommandOptionType, ActionRowBuilder, ButtonBuilder } = require('discord.js');
-
+const { form_message } = require('../../config.json');
 
 module.exports = {
     name: "form_embed",
@@ -18,18 +18,6 @@ module.exports = {
                     description: 'The channel you want to send the text to.',
                     type: ApplicationCommandOptionType.Channel,
                     required: true
-                },
-                {
-                    name: 'embed_title',
-                    description: 'The title of the embed.',
-                    type: ApplicationCommandOptionType.String,
-                    required: true
-                },
-                {
-                    name: 'embed_description',
-                    description: 'The description of the embed.',
-                    type: ApplicationCommandOptionType.String,
-                    required: true
                 }
             ]
         },
@@ -37,13 +25,14 @@ module.exports = {
 
 	run: async (client, interaction) => {
 
-        const title = interaction.options.get('embed_title').value;
-        const description = interaction.options.get('embed_description').value.replace(/\{line\}/g, '\n');
         const channel = interaction.options.get('channel').channel;
+        const title = form_message.title;
+        const subtitle = form_message.subtitle;
+        const description = form_message.description;
 
         const embed = new EmbedBuilder()
                 .setTitle(title || 'Formulário')
-                .setDescription(description || `.`)
+                .setDescription(`${subtitle || ''}\n\n${description || ''}`)
                 .setColor('#23272A')
                 .setFooter({ text: interaction.guild.name, iconURL: interaction.guild.iconURL() });
 

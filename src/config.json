@@ -11,5 +11,10 @@
     "test_channel": "1167178307725434891",
     "mix_approve_channel": "1169344774256463942",
     "test_result_channel": "1167178516413026344",
-    "ticket_test_category": "1167181856756740207"
+    "ticket_test_category": "1167181856756740207",
+    "form_message": {
+        "title": "Formulário para ingressar na Panic!",
+        "subtitle": "Requisitos para ingressar no time:",
+        "description": "Ter um nível avançado de habilidade no jogo (saber os nomes dos lugares nos mapas e ter uma boa noção de jogo). \n Experiência prévia em competições e treinos! (Ter participado de algum campeonato e compromisso de treinar todos os dias).\n Disponibilidade diária durante a noite. \n Possuir um bom fone de ouvido e um dispositivo com desempenho de pelo menos 60fps. \n Todos esses requisitos são obrigatórios. Caso não os atenda, não faça o formulário e será rejeitado."
+    }
 }
