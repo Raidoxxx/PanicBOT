@@ -22,12 +22,12 @@ module.exports = {
 			}
 		  }	
 
-		if(interaction.guild.channels.cache.find(channel => channel.name === `ticket-${player_form.username}`)){
+		if(interaction.guild.channels.cache.find(channel => channel.name === `ticket-${player_form.id}`)){
 			return interaction.reply({ content: 'Você já tem um ticket aberto!', ephemeral: true });
 		}  
        
 		const channel = await interaction.guild.channels.create({
-			name: `ticket-${player_form.username}`,
+			name: `ticket-${player_form.id}`,
 			type: ChannelType.GuildText,
 			parent: ticket_test_category,
 			permissionOverwrites: [

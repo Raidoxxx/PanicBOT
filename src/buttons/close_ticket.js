@@ -22,7 +22,7 @@ module.exports = {
     }
 
     const channel = interaction.guild.channels.cache.find(
-      (channel) => channel.name === `ticket-${player_form.username}`
+      (channel) => channel.name === `ticket-${player_form.id}`
     );
 
     async function fetchAllMessages() {
