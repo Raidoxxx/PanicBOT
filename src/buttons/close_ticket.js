@@ -6,6 +6,16 @@ module.exports = {
   id: "close_ticket",
   permissions: [],
   run: async (client, interaction, playerID) => {
+
+    
+    const channel = interaction.guild.channels.cache.find(
+      (channel) => channel.name === `ticket-${playerID}`
+    );
+
+    if(!interaction.guild.members.cache.get(playerID)){
+      channel.delete();
+    }
+
     const player_form = interaction.guild.members.cache.get(playerID).user;
 
     if (!interaction.member.roles.cache.get(suportRole)) {
@@ -21,9 +31,6 @@ module.exports = {
       }
     }
 
-    const channel = interaction.guild.channels.cache.find(
-      (channel) => channel.name === `ticket-${player_form.id}`
-    );
 
     async function fetchAllMessages() {
       let messages = [];
