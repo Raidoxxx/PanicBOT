@@ -7,7 +7,7 @@ module.exports = {
   permissions: [],
   run: async (client, interaction, playerID) => {
 
-
+    
     const channel = interaction.guild.channels.cache.find(
       (channel) => channel.name === `ticket-${playerID}`
     );
@@ -67,17 +67,17 @@ module.exports = {
         ],
       });
 
-    // const embeds = [
-    //   new EmbedBuilder()
-    //     .setDescription(
-    //       `🚫 ${
-    //         interaction.user
-    //       }, Ticket fechado com sucesso! \n\n **Usuário:** ${player_form} \n **Atendente:** ${
-    //         interaction.user
-    //       } \n\n **Mensagens:** \n\n ${message_text.join("\n\n")}}`
-    //     )
-    //     .setColor("Red"),
-    // ];
+    const embeds = [
+      new EmbedBuilder()
+        .setDescription(
+          `🚫 ${
+            interaction.user
+          }, Ticket fechado com sucesso! \n\n **Usuário:** ${player_form} \n **Atendente:** ${
+            interaction.user
+          } \n\n **Mensagens:** \n\n -}`
+        )
+        .setColor("Red"),
+    ];
 
     await logs.send({ embeds: embeds });
     channel.delete();
