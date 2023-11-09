@@ -39,6 +39,8 @@ module.exports = {
       const fetchedMessages = await channel.messages.fetch({ limit: 100 });
 
       fetchedMessages.forEach((msg) => {
+        if(messages.length >= 100) return;
+        
         messages.unshift(`<@${msg.author.id}>: ${msg.content}`);
         attachments.push(
           ...msg.attachments.map((attachment) => attachment.url)
