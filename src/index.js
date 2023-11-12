@@ -3,6 +3,11 @@ const { Client, GatewayIntentBits, Partials, Collection } = require('discord.js'
 const fs = require('fs');
 const path = require('path');
 const config = require('./config.json');
+const { Database } = require('./data/Database.js');
+
+const db = new Database();
+db.connect();
+db.init();
 
 
 const client = new Client({

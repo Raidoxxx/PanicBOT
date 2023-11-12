@@ -9,8 +9,8 @@ client.on('interactionCreate', async interaction => {
             const form = client.forms.get("test");
             form.run(client, interaction);
         }
-        if(interaction.customId.startsWith('form_panic')) {
-            const form = client.forms.get("form_panic");
+        if(interaction.customId.startsWith('register')) {
+            const form = client.forms.get("register");
             form.run(client, interaction);
         }
     }
