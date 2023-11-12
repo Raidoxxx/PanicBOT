@@ -39,9 +39,11 @@ class PlayerManager {
         const player = this.getPlayer(id);
         if (!player) return;
         this.players.splice(this.players.indexOf(player), 1);
-        this.connection.query(`DELETE FROM cw_players WHERE id = $1;`, [id]).then(() => {
-            console.log('Player removed');
-        }).catch((err) => {
+        
+        this.connection.query(`
+            DELETE FROM cw_players
+            WHERE id = $1;
+        `, [id]).catch((err) => {
             console.log(err);
         });
     }

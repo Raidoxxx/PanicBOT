@@ -11,7 +11,7 @@ module.exports = {
         const username = interaction.fields.getTextInputValue('register_username');
         const id = interaction.fields.getTextInputValue('register_id');
 
-        new PlayerManager(client.db).registerPlayer(id, username).then(() => {
+        client.PlayerManager.registerPlayer(id, username).then(() => {
             interaction.reply({ content: 'Jogador registrado com sucesso!', ephemeral: true })
         }).catch((err) => {
             console.log(err);
