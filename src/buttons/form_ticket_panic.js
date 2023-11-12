@@ -7,6 +7,10 @@ module.exports = {
 	permissions: [],
 	run: async (client, interaction, playerID) => {
 
+		if(!interaction.guild.members.cache.get(playerID)){
+			return interaction.reply({ content: 'Não foi possível criar o ticket!', ephemeral: true });
+		}
+		
 		const player_form = interaction.guild.members.cache.get(playerID).user;
 
 		if (!interaction.member.roles.cache.get(suportRole)) {
