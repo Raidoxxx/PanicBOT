@@ -1,5 +1,6 @@
 const { Player } = require('../data/Player.js');
 const { Database } = require('../data/Database.js');
+
 class PlayerManager {
     constructor() {
         this.players = [];
