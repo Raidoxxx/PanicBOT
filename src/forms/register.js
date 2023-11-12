@@ -1,6 +1,6 @@
 const { EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle } = require('discord.js');
 const {form_channel} = require('../config.json');
-const { PlayerManager } = require('../managers/PlayerManager.js');
+const { playerManager } = require('../index.js');
 
 module.exports = {
     name: "register",
@@ -11,7 +11,7 @@ module.exports = {
         const username = interaction.fields.getTextInputValue('register_username');
         const id = interaction.fields.getTextInputValue('register_id');
 
-        client.PlayerManager.registerPlayer(id, username).then(() => {
+        playerManager.registerPlayer(id, username).then(() => {
             interaction.reply({ content: 'Jogador registrado com sucesso!', ephemeral: true })
         }).catch((err) => {
             console.log(err);
