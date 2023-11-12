@@ -2,19 +2,15 @@ const { Player } = require('../data/Player.js');
 const { client } = require('../index.js');
 
 class PlayerManager {
-    constructor() {
+    constructor(database) {
         this.players = [];
-        this.connection = null;
+        this.connection = database;
     }
 
     init(){
-        if (!this.connection){  
-            this.connection = client.db;
-        }
-
         this.connection.query(`SELECT * FROM cw_players;`).then((res) => {
             res.rows.forEach((row) => {
-                this.addPlayer(new Player(row.id, row.username, this));
+                this.addPlayer(new Player(row.id, row.username, this.connection));
             });
         }).catch((err) => {
             console.log(err);

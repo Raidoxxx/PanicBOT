@@ -10,7 +10,7 @@ const db = new Database();
 db.connect();
 db.init();
 
-const player_manager = new PlayerManager();
+const player_manager = new PlayerManager(db);
 player_manager.init();
 
 
