@@ -44,8 +44,6 @@ class Database {
         }).catch((err) => {
             console.log(err);
         });
-
-        new PlayerManager(this);
     }
 
   }

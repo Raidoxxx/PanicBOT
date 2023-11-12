@@ -11,6 +11,11 @@ db.init();
 
 const { PlayerManager } = require('./managers/PlayerManager.js');
 
+const player_manager = new PlayerManager();
+player_manager.init();
+
+module.exports = player_manager;
+
 const client = new Client({
 	intents: [
 		GatewayIntentBits.Guilds, 
@@ -32,7 +37,7 @@ client.buttons = new Collection();
 client.forms = new Collection();
 client.prefix = config.prefix;
 
-module.exports = { client, db, PlayerManager };
+module.exports = client;
 
 const handlers = path.join(__dirname, 'handlers');
 fs.readdirSync(handlers).forEach((handler) => {
