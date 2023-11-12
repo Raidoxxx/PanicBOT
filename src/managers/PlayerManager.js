@@ -25,9 +25,15 @@ class PlayerManager {
     }
 
     registerPlayer(id, username) {
-        this.connection.registerPlayer(id, username);
+        this.connection.query(`
+            INSERT INTO cw_players (id, username)
+            VALUES ($1, $2)
+            ON CONFLICT (id) DO NOTHING;
+        `, [id, username]).catch((err) => {
+            console.log(err);
+        });
         this.addPlayer(new Player(id, username, this));
-    }
+    }   
 
     removePlayer(id) {
         const player = this.getPlayer(id);

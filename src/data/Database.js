@@ -48,16 +48,6 @@ class Database {
         new PlayerManager(this);
     }
 
-    registerPlayer(id, username) {
-        if (!this.connection) return;
-        return this.connection.query(`
-            INSERT INTO cw_players (id, username)
-            VALUES ($1, $2)
-            ON CONFLICT (id) DO NOTHING;
-        `, [id, username]).catch((err) => {
-            console.log(err);
-        });
-    }
   }
 
 module.exports = { Database };
