@@ -17,6 +17,7 @@ module.exports = {
   cooldown: 3000,
   run: async (client, interaction) => {
 
+    console.log(!interaction.member.roles.cache.get(suportRole) || !interaction.member.permissions.has(PermissionsBitField.ADMINISTRATOR))
     if (!interaction.member.roles.cache.get(suportRole) || !interaction.member.permissions.has(PermissionsBitField.ADMINISTRATOR)) {
       return interaction.reply({
         content: `${interaction.user}, Você não tem permissão para usar isso!`,
