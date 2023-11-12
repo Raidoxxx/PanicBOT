@@ -1,5 +1,5 @@
 const { Player } = require('../data/Player.js');
-const { db } = require('../index.js');
+const { client } = require('../index.js');
 
 class PlayerManager {
     constructor() {
@@ -9,7 +9,7 @@ class PlayerManager {
 
     init(){
         if (!this.connection){  
-            this.connection = db.connection;
+            this.connection = client.db;
         }
 
         this.connection.query(`SELECT * FROM cw_players;`).then((res) => {

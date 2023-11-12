@@ -4,13 +4,11 @@ const fs = require('fs');
 const path = require('path');
 const config = require('./config.json');
 const { Database } = require('./data/Database.js');
+const { PlayerManager } = require('./managers/PlayerManager.js');
 
 const db = new Database();
 db.connect();
 db.init();
-
-
-const { PlayerManager } = require('./managers/PlayerManager.js');
 
 const player_manager = new PlayerManager();
 player_manager.init();
@@ -36,10 +34,11 @@ client.slashCommands = new Collection();
 client.buttons = new Collection();
 client.forms = new Collection();
 client.prefix = config.prefix;
+client.db = db;
+client.player_manager = player_manager;
 
 module.exports = client;
-module.exports = player_manager;
-module.exports = db;
+
 const handlers = path.join(__dirname, 'handlers');
 fs.readdirSync(handlers).forEach((handler) => {
   require(`${handlers}/${handler}`)(client)
