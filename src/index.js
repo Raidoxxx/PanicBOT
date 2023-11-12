@@ -9,9 +9,6 @@ const db = new Database();
 db.connect();
 db.init();
 
-const { PlayerManager } = require('./managers/PlayerManager.js');
-const player_manager = new PlayerManager(db);
-module.exports = player_manager;
 
 const client = new Client({
 	intents: [

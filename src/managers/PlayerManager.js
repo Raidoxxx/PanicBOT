@@ -1,12 +1,16 @@
 const { Player } = require('../data/Player.js');
-
+const { Database } = require('../data/Database.js');
 class PlayerManager {
-    constructor(database) {
+    constructor() {
         this.players = [];
-        this.connection = database;
+        this.connection = null;
     }
 
     init(){
+        if (!this.connection){
+            this.connection = new Database();
+        }
+
         this.connection.query(`SELECT * FROM cw_players;`).then((res) => {
             res.rows.forEach((row) => {
                 this.addPlayer(new Player(row.id, row.username, this));
