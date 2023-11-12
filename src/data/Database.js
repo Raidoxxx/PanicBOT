@@ -1,5 +1,3 @@
-const { PlayerManager } = require('../managers/PlayerManager.js');
-
 class Database {
     constructor() {
         this.connection = null;

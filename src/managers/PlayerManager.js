@@ -8,8 +8,8 @@ class PlayerManager {
     }
 
     init(){
-        if (!this.connection){
-            this.connection = db;
+        if (!this.connection){  
+            this.connection = db.connection;
         }
 
         this.connection.query(`SELECT * FROM cw_players;`).then((res) => {

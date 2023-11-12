@@ -9,14 +9,12 @@ const db = new Database();
 db.connect();
 db.init();
 
-module.exports = db;
 
 const { PlayerManager } = require('./managers/PlayerManager.js');
 
 const player_manager = new PlayerManager();
 player_manager.init();
 
-module.exports = player_manager;
 
 const client = new Client({
 	intents: [
@@ -40,7 +38,8 @@ client.forms = new Collection();
 client.prefix = config.prefix;
 
 module.exports = client;
-
+module.exports = player_manager;
+module.exports = db;
 const handlers = path.join(__dirname, 'handlers');
 fs.readdirSync(handlers).forEach((handler) => {
   require(`${handlers}/${handler}`)(client)
