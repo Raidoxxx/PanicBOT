@@ -17,6 +17,8 @@ module.exports = {
   cooldown: 3000,
   run: async (client, interaction) => {
 
+    console.log(interaction.member.roles.cache.get(suportRole))
+    console.log(interaction.member.permissions.has(PermissionsBitField.ADMINISTRATOR))
     console.log(!interaction.member.roles.cache.get(suportRole) || !interaction.member.permissions.has(PermissionsBitField.ADMINISTRATOR))
     if (!interaction.member.roles.cache.get(suportRole) || !interaction.member.permissions.has(PermissionsBitField.ADMINISTRATOR)) {
       return interaction.reply({
