@@ -17,14 +17,15 @@ module.exports = {
   cooldown: 3000,
   run: async (client, interaction) => {
 
-    console.log(interaction.member.roles.cache.get(suportRole))
-    console.log(interaction.member.permissions.has(PermissionsBitField.Flags.Administrator))
-    console.log(!interaction.member.roles.cache.get(suportRole) || !interaction.member.permissions.has(PermissionsBitField.Flags.Administrator))
-    if (!interaction.member.roles.cache.has(suportRole) || !interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
-      return interaction.reply({
-        content: `${interaction.user}, Você não tem permissão para usar isso!`,
-        ephemeral: true,
-      });
+    if (!interaction.member.roles.cache.get(suportRole)) {
+
+      if(!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)){
+        return interaction.reply({
+          content: `${interaction.user}, Você não tem permissão para usar isso!`,
+          ephemeral: true,
+        });
+      }
+    
     }
 
     const modal = new ModalBuilder()
