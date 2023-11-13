@@ -1,3 +1,5 @@
+const mysql = require('mysql');
+
 class Database {
     constructor() {
         this.connection = null;
@@ -5,31 +7,36 @@ class Database {
   
     connect() {
         if (this.connection) return;
-        const pg = require('pg');
 
-        this.connection = new pg.Client({
-            connectionString: process.env.DATABASE_URL,
+        this.connection = mysql.createConnection({
+            host: process.env.DB_HOST,
+            user: process.env.DB_USER,
+            password: process.env.DB_PASS,
+            database : process.env.DB_NAME,
         });
 
         this.connection.connect((err) => {
-            if (err) {
-                return console.error('could not connect to postgres', err);
-            }
-    
-            console.log('connected to postgres');
+            if (err) throw err;
+            console.log("Connected to the database!");
         });
     }
 
     async query(query, params) {
         if (!this.connection) return;
-        return await this.connection.query(query, params);
+        return new Promise((resolve, reject) => {
+            this.connection.query(query, params, (error, results) => {
+                if (error) reject(error);
+                resolve(results);
+            });
+        });
     }
 
     async init() {
         if (!this.connection) return;
-        await this.connection.query(`
+        this.connection.query(`
             CREATE TABLE IF NOT EXISTS cw_players (
                 id VARCHAR(20) NOT NULL,
+                discord_id VARCHAR(255) NOT NULL,
                 username VARCHAR(255) NOT NULL,
                 kills INT NOT NULL DEFAULT 0,
                 deaths INT NOT NULL DEFAULT 0,
@@ -37,13 +44,11 @@ class Database {
                 losses INT NOT NULL DEFAULT 0,
                 PRIMARY KEY (id)
             );
-        `).then(() => {
-            console.log('Table cw_players created successfully');
-        }).catch((err) => {
-            console.log(err);
+        `, (error) => {
+            if (error) throw error;
+            console.log('Database initialized');
         });
     }
-
 }
 
 module.exports = { Database };

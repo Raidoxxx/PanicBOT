@@ -8,45 +8,63 @@ class PlayerManager {
     }
 
     init(){
-        this.connection.query(`SELECT * FROM cw_players;`).then((res) => {
-            res.rows.forEach((row) => {
-                this.addPlayer(new Player(row.id, row.username, this.connection));
+        console.log('Initializing player data...');
+        this.connection.query(`
+            SELECT * 
+            FROM cw_players;
+        `, (error, results) => {
+            if (error) throw error;
+
+            results.forEach((result) => {
+                const player = new Player(result.id, result.discord_id, result.username, this.connection);
+                this.players.push(player);
             });
-        }).catch((err) => {
-            console.log(err);
         });
+    }
+
+    async existPlayer(id) {
+        const query = `
+        SELECT * 
+        FROM cw_players 
+        WHERE discord_id = ?;
+        `;
+        const params = [id];
+
+        const res = await this.connection.query(query, params);
+
+        if (res.length === 0) {
+            return false;
+        }
+
+        return true;
     }
     
     addPlayer(player) {
         this.players.push(player);
     }
     
-    getPlayer(id) {
-        return this.players.find((player) => player.id === id);
+    async registerPlayer(id, dc_id, username) {
+
+        const query = `
+        INSERT INTO cw_players (id, discord_id, username, kills, deaths, wins, losses) 
+        VALUES (?, ?, ?, ?, ?, ?, ?);
+        `;
+        const params = [id, dc_id, username, 0, 0, 0, 0];
+
+        await this.connection.query(query, params);
+    }   
+   
+    async getPlayer(dc_id) {
+        // search for player in cache
+       // console.log('Searching for player in cache...');
+        //console.log(this.players.find((player) => player.dc_id === dc_id))
+        const player = this.players.find((player) => player.dc_id === dc_id);
+
+        if (player) return player;
     }
 
-    registerPlayer(id, username) {
-        this.connection.query(`
-            INSERT INTO cw_players (id, username)
-            VALUES ($1, $2)
-            ON CONFLICT (id) DO NOTHING;
-        `, [id, username]).catch((err) => {
-            console.log(err);
-        });
-        this.addPlayer(new Player(id, username, this));
-    }   
-
-    removePlayer(id) {
-        const player = this.getPlayer(id);
-        if (!player) return;
-        this.players.splice(this.players.indexOf(player), 1);
-        
-        this.connection.query(`
-            DELETE FROM cw_players
-            WHERE id = $1;
-        `, [id]).catch((err) => {
-            console.log(err);
-        });
+    async getPlayers() {
+        return this.players;
     }
 
     async savePlayer(id) {

@@ -12,11 +12,8 @@ module.exports = {
 
         if(!username || !id) return interaction.reply({ content: 'Você precisa preencher todos os campos!', ephemeral: true });
 
-        client.player_manager.registerPlayer(id, username).then(() => {
-            interaction.reply({ content: 'Jogador registrado com sucesso!', ephemeral: true })
-        }).catch((err) => {
-            console.log(err);
-            interaction.reply({ content: 'Ocorreu um erro ao registrar o jogador!', ephemeral: true })
-        });
+        client.player_manager.registerPlayer(id, username);
+        
+        return interaction.reply({ content: 'Jogador registrado com sucesso!', ephemeral: true });
     }
 }
