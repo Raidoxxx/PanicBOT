@@ -14,6 +14,7 @@ class Player {
         this.init();
     }
 
+    //
     async init() {
         if (!this.database) return;
     
