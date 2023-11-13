@@ -47,6 +47,8 @@ module.exports = {
             .setFooter({ text: interaction.guild.name, iconURL: interaction.guild.iconURL() });
 
             return interaction.reply({ embeds: [embed] });
+        }else{
+            return interaction.reply({ content: `Jogador não registrado.`, ephemeral: true });
         }
     });
   }
