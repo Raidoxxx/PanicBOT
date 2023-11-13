@@ -38,7 +38,9 @@ module.exports = {
         }else{
             client.player_manager.registerPlayer(id, player.id, nickname).then(() => {
                 return interaction.reply({ content: `Jogador registrado com sucesso.`, ephemeral: true });
+            });
         }
     });
+
   }
 };
