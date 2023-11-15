@@ -52,6 +52,8 @@ class PlayerManager {
         const params = [id, dc_id, username, 0, 0, 0, 0];
 
         await this.connection.query(query, params);
+
+        this.addPlayer(new Player(id, dc_id, username, this.connection));
     }   
    
     async getPlayer(dc_id) {
