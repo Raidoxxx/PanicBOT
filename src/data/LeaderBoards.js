@@ -2,6 +2,7 @@ class Leaderboard{
     constructor(database){
         this.connection = database;
         this.leaderboard_channel = null;
+        this.leaderboard_week = new LeaderboardWeek(this);
     }
 
     async init(){
@@ -17,6 +18,7 @@ class Leaderboard{
             );
         `);
 
+    
         await this.getLeaderboardChannel().then((res) => {
             if(res){
                 this.leaderboard_channel = res.channel_id;
