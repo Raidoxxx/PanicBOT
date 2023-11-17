@@ -13,6 +13,7 @@ client.on('interactionCreate', async interaction => {
 				await slashCommand.autocomplete(interaction, choices)
 			}
 		}
+
 		
 		if (!interaction.type == 2) return;
 	

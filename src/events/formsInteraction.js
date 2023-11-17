@@ -2,6 +2,7 @@ const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 const client = require('../index.js');
 
 client.on('interactionCreate', async interaction => {
+
 	if (!interaction.isModalSubmit) return;
     
     if (interaction.isModalSubmit()) {
@@ -11,6 +12,10 @@ client.on('interactionCreate', async interaction => {
         }
         if(interaction.customId.startsWith('register')) {
             const form = client.forms.get("register");
+            form.run(client, interaction);
+        }
+        if(interaction.customId.startsWith('form_panic')) {
+            const form = client.forms.get("form_panic");
             form.run(client, interaction);
         }
     }
