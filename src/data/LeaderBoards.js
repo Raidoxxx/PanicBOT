@@ -1,10 +1,7 @@
-const { LeaderboardWeek } = require('./LeaderBoardWeek.js');
-
 class Leaderboard {
     constructor(database) {
         this.connection = database;
         this.leaderboard_channel = null;
-        this.leaderboard_week = new LeaderboardWeek(this);
     }
 
     async init() {
