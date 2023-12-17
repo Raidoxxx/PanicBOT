@@ -3,18 +3,6 @@ const { Client, GatewayIntentBits, Partials, Collection, EmbedBuilder } = requir
 const fs = require('fs');
 const path = require('path');
 const config = require('./config.json');
-const { Database } = require('./data/Database.js');
-const { PlayerManager } = require('./managers/PlayerManager.js');
-const { Leaderboard } = require('./data/LeaderBoards.js');
-const db = new Database();
-db.connect();
-db.init();
-
-const player_manager = new PlayerManager(db);
-player_manager.init();
-
-const leaderboard = new Leaderboard(db);
-leaderboard.init();
 
 const client = new Client({
 	intents: [
