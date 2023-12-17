@@ -36,10 +36,6 @@ client.slashCommands = new Collection();
 client.buttons = new Collection();
 client.forms = new Collection();
 client.prefix = config.prefix;
-client.db = db;
-client.player_manager = player_manager;
-client.leaderboard = leaderboard;
-client.tasks = new Collection();
 
 module.exports = client;
 
